@@ -5,7 +5,7 @@
         v-for="item in playlists"
         :key="item.id"
         class="scroll-view-item"
-        @click="handleSongSheetItemClick(item.id)"
+        @click="handleSongSheetItemClick(item)"
       >
         <image class="img" mode="aspectFill" :src="item.coverImgUrl"></image>
         <view class="sheet">
@@ -19,6 +19,7 @@
 
 <script>
 import Api from '../../Api/index.api'
+import { mapActions } from 'vuex'
 export default {
   name: 'SongSheet',
   data() {
@@ -27,11 +28,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setSongSheetId']),
     // 获取歌单列表数据
     fetchSongSheet(data) {
       Api.getSongSheet(data)
         .then(res => {
-          console.log('getSongSheet res', res)
+          console.log('getSongSheet', res)
           let { result: { playlists }, code } = res
           if(code === 200) {
             this.playlists = playlists
@@ -42,15 +44,21 @@ export default {
         })
     },
     //  
-    handleSongSheetItemClick(id) {
-
+    handleSongSheetItemClick(songListObj) {
+      if(!songListObj) return
+      let id = songListObj.id
+      let songListTitle = songListObj.name
+      this.setSongSheetId(id) // 设置vuex id
+      wx.navigateTo({
+        url: `/pages/song-list/main?title=${songListTitle}`
+      })
     }
   },
   created() {
     let reqParam = {
       type: 'search',
       search_type: '1000',
-      s: 'lawl1et丶lzy'
+      s: 'CeuiLiSA'
     }
     // 获取音乐列表
     this.fetchSongSheet(reqParam)
