@@ -18,6 +18,7 @@
           class="song"
           v-for="(item, index) in playlist.tracks"
           :key="index"
+          @click="handleSongClick(item.id)"
         >
           <div class="song-index">
             {{ index + 1 }}
@@ -84,6 +85,13 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    // 歌曲点击事件
+    handleSongClick(songId) {
+      if(!songId) return false
+      // wx.navigateTo({
+      //   url: `/pages/song/main?id=${songId}`
+      // })
     }
   },
   onLoad(options) {
