@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/song-list/main",
     "pages/song-sheet/main",
+    "pages/song-list/main",
     "pages/my/main"
   ],
   "window": {

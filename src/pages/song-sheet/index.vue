@@ -55,14 +55,22 @@ export default {
     }
   },
   created() {
-    let reqParam = {
-      type: 'search',
-      search_type: '1000',
-      s: 'CeuiLiSA'
-    }
-    // 获取音乐列表
-    this.fetchSongSheet(reqParam)
-  }
+    // let reqParam = {
+    //   type: 'search',
+    //   search_type: '1000',
+    //   s: 'CeuiLiSA'
+    // }
+    // // 获取音乐列表
+    // this.fetchSongSheet(reqParam)
+  },
+  mounted() {
+    
+    // TODO: 
+    this.setSongSheetId(2632951386) // 设置vuex id
+    wx.navigateTo({
+      url: `/pages/song-list/main?title=测试demo`
+    })
+  },
 }
 </script>
 
