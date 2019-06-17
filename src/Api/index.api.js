@@ -22,7 +22,7 @@ class Api {
   static getSongList(data) {
     return axios({
       method: 'get',
-      url: '/cloudmusic',
+      url: '/playlist/detail',
       data
     })
   }

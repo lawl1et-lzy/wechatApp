@@ -1,5 +1,6 @@
 <template>
   <div class="section">
+    <!-- 基本信息 -->
     <div class="detail" v-if="playlist">
       <image class="img" mode="aspectFill" :src="playlist.coverImgUrl"></image>
       <div class="detail-info">
@@ -11,7 +12,9 @@
         <div class="info-edit">编辑简介</div>
       </div>
     </div>
-      <div 
+    <!-- 歌曲列表 -->
+      <div
+        v-if="playlist"
         class="list"
       >
         <div
@@ -25,7 +28,7 @@
           </div>
           <div class="song-info">
             <div class="info-name">
-              {{ item.name }}{{ item.alia || '' }}
+              {{ item.name }}{{ item.alia.length > 0 ? '(' + item.alia + ')': '' }}
             </div>
             <div class="info-author">
               {{ item.ar[0].name }}
@@ -53,6 +56,7 @@ export default {
     })
   },
   watch: {
+    // 设置标题
     title(n) {
       if(n) {
         wx.setNavigationBarTitle({
@@ -62,12 +66,11 @@ export default {
     },
     listId(n) {
       if(n) {
-        let reqParam = {
-          type: 'playlist',
+        let rq = {
           id: n
         }
         // 获取音乐列表
-        this.fetchSongList(reqParam)
+        this.fetchSongList(rq)
       }
     }
   },
@@ -89,9 +92,9 @@ export default {
     // 歌曲点击事件
     handleSongClick(songId) {
       if(!songId) return false
-      // wx.navigateTo({
-      //   url: `/pages/song/main?id=${songId}`
-      // })
+      wx.navigateTo({
+        url: `/pages/song/main?id=${songId}`
+      })
     }
   },
   onLoad(options) {
@@ -140,7 +143,7 @@ export default {
   .list {
     .song{
       display:flex;
-      margin:20rpx 0 0 20rpx;
+      margin: 30rpx 0 0 20rpx;
       align-items:center;
       .song-index{
         font-size:26rpx;
