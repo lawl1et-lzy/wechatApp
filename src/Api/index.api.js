@@ -31,7 +31,7 @@ class Api {
   static getSongInfo(data) {
     return axios({
       method: 'get',
-      url: '/cloudmusic',
+      url: '/song/detail',
       data
     })
   }
@@ -40,7 +40,7 @@ class Api {
   static getPersonalInfo(data) {
     return axios({
       method: 'get',
-      url: '/cloudmusic',
+      url: '/user/detail',
       data
     })
   }

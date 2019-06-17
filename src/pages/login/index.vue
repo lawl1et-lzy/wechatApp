@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .wrap-login{
   padding: 20rpx;
   .form-group{

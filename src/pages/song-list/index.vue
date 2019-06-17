@@ -92,9 +92,14 @@ export default {
     // 歌曲点击事件
     handleSongClick(songId) {
       if(!songId) return false
-      wx.navigateTo({
-        url: `/pages/song/main?id=${songId}`
+      wx.showToast({
+        title: '后续功能等待开发中,敬请期待...',
+        icon: 'none',
+        duration: 1.5 * 1000
       })
+      // wx.navigateTo({
+      //   url: `/pages/song/main?id=${songId}`
+      // })
     }
   },
   onLoad(options) {
@@ -103,7 +108,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .section{
   .detail{
     display:flex;
