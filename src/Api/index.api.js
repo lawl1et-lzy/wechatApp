@@ -1,11 +1,19 @@
 import axios from '../utils/fly'
 
 class Api {
+  // 登录
+  static getLogin(data) {
+    return axios({
+      method: 'get',
+      url: '/login/cellphone',
+      data
+    })
+  }
   // 获取歌单列表
   static getSongSheet(data) {
     return axios({
       method: 'get',
-      url: '/cloudmusic',
+      url: '/user/playlist',
       data
     })
   }

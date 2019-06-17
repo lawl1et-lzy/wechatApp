@@ -2,6 +2,7 @@
   "pages": [
     "pages/song-sheet/main",
     "pages/song-list/main",
+    "pages/login/main",
     "pages/my/main"
   ],
   "window": {

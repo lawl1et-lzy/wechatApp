@@ -2,12 +2,12 @@
   <view class="section">
     <scroll-view scroll-y class="scroll-view">
       <view
-        v-for="item in playlists"
+        v-for="item in playlist"
         :key="item.id"
         class="scroll-view-item"
         @click="handleSongSheetItemClick(item)"
       >
-        <image class="img" mode="aspectFill" :src="item.coverImgUrl"></image>
+        <image class="img" mode="scaleToFill" :src="item.coverImgUrl"></image>
         <view class="sheet">
           <div class="sheet-name">{{ item.name }}</div>
           <div class="sheet-num">{{ item.trackCount }}首</div>
@@ -24,7 +24,7 @@ export default {
   name: 'SongSheet',
   data() {
     return {
-      playlists: []
+      playlist: []
     }
   },
   methods: {
@@ -34,16 +34,15 @@ export default {
       Api.getSongSheet(data)
         .then(res => {
           console.log('getSongSheet', res)
-          let { result: { playlists }, code } = res
+          let { playlist, code } = res
           if(code === 200) {
-            this.playlists = playlists
+            this.playlist = playlist
           }
         })
         .catch(err => {
           console.log('getSongSheet err', err)
         })
     },
-    //  
     handleSongSheetItemClick(songListObj) {
       if(!songListObj) return
       let id = songListObj.id
@@ -52,25 +51,31 @@ export default {
       wx.navigateTo({
         url: `/pages/song-list/main?title=${songListTitle}`
       })
+    },
+    init() {
+      try {
+        let user = wx.getStorageSync('user')
+        this.user = user ? JSON.parse(user) : ''
+      } catch (error) {
+        console.error(error)
+      }
+      if(this.user) {
+        let rq = {
+          uid: this.user.id
+        }
+        console.dir(rq)
+        // 获取音乐列表
+        this.fetchSongSheet(rq)
+      } else {
+        wx.navigateTo({
+          url: 'pages/login/main'
+        })
+      }
     }
   },
   created() {
-    // let reqParam = {
-    //   type: 'search',
-    //   search_type: '1000',
-    //   s: 'CeuiLiSA'
-    // }
-    // // 获取音乐列表
-    // this.fetchSongSheet(reqParam)
-  },
-  mounted() {
-    
-    // TODO: 
-    this.setSongSheetId(2632951386) // 设置vuex id
-    wx.navigateTo({
-      url: `/pages/song-list/main?title=测试demo`
-    })
-  },
+    this.init()
+  }
 }
 </script>
 
@@ -88,7 +93,7 @@ export default {
         border-radius: 8rpx;
         width: 100rpx;
         height: 100rpx;
-        padding-right: 10rpx;
+        margin-right: 10rpx;
       }
       .sheet{
         height: 100%;
