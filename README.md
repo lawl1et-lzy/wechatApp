@@ -44,18 +44,18 @@ npm run build --report
 
 ### Login 登录页
 
-<img src="https://github.com/lawliet-lzy/resource/tree/master/image/WechatApp/Login.png" width="414" height="736"/>
+<img src="https://github.com/lawliet-lzy/resource/blob/master/image/WechatApp/Login.png" width="414" height="736"/>
 
 ### SongSheet 歌单列表
-<img src="https://github.com/lawliet-lzy/resource/tree/master/image/WechatApp/SongSheet.png" width="414" height="736"/>
+<img src="https://github.com/lawliet-lzy/resource/blob/master/image/WechatApp/SongSheet.png" width="414" height="736"/>
 
 ### SongList 歌曲列表
 
-<img src="https://github.com/lawliet-lzy/resource/tree/master/image/WechatApp/SongList.png" width="414" height="736"/>
+<img src="https://github.com/lawliet-lzy/resource/blob/master/image/WechatApp/SongList.png" width="414" height="736"/>
 
 ### UserInfo 个人信息
 
-<img src="https://github.com/lawliet-lzy/resource/tree/master/image/WechatApp/SongList.png" width="414" height="736"/>
+<img src="https://github.com/lawliet-lzy/resource/blob/master/image/WechatApp/SongList.png" width="414" height="736"/>
 
 
 ## 项目概览
